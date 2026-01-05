@@ -1,5 +1,10 @@
 # 📰 Fake News Detection using Machine Learning
 
+## 🌐 Live Demo
+Use the application here:  
+https://fake-news-detection-ml-8lkpepmx8xejpk235u3yij.streamlit.app/
+
+
 ## 📌 Project Overview
 Fake news spreads rapidly on digital platforms and can mislead public opinion.  
 This project aims to automatically classify news articles as Fake or Real using Machine Learning and Natural Language Processing (NLP).
