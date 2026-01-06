@@ -1,144 +1,242 @@
-# 📰 Fake News Detection using Machine Learning
+# 📰 AI Fake News Detection System
 
-## 🌐 Live Demo
-Use the application here:  
-https://fake-news-detection-ml-8lkpepmx8xejpk235u3yij.streamlit.app/
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://fake-news-detection-ml-8lkpepmx8xejpk235u3yij.streamlit.app/)
+![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)
+![DistilBERT](https://img.shields.io/badge/Model-DistilBERT-orange.svg)
+![License](https://img.shields.io/badge/License-MIT-green.svg)
 
+> **Context-aware fake news detection with AI explainability, emotion analysis, and writing style metrics.**
 
-## 📌 Project Overview
-Fake news spreads rapidly on digital platforms and can mislead public opinion.  
-This project aims to automatically classify news articles as Fake or Real using Machine Learning and Natural Language Processing (NLP).
-
-The model is trained on a real-world news dataset and achieves ~99% accuracy using TF-IDF feature extraction and Logistic Regression.
+![Demo Screenshot](https://via.placeholder.com/800x400?text=AI+Fake+News+Analyzer)
 
 ---
 
-## 🎯 Objectives
-- Detect fake and real news articles automatically
-- Apply NLP techniques to clean and process text data
-- Convert text into numerical features using TF-IDF
-- Train and evaluate a machine learning classification model
-- Save and reload the trained model for future predictions
+## 🌟 Features
+
+### 🎯 Core Classification
+- **DistilBERT-powered** semantic understanding (not just keyword matching)
+- **Confidence scoring** with probability breakdown
+- **Length gating** - admits uncertainty on short text instead of guessing
+
+### 🔍 AI Explainability
+- **Word-level importance** - see which words pushed toward FAKE/REAL
+- **Color-coded visualization** - red for fake indicators, green for real
+- **Impact percentages** - quantified contribution of each word
+
+### 📊 Writing Style Analysis
+- **Sensationalism score** (0-100%)
+- **ALL CAPS detection** with percentage
+- **Exclamation abuse** tracking
+- **Sensational word detection** (BREAKING, EXPOSED, SECRET, etc.)
+
+### 😠 Emotion Detection
+- **Multi-emotion analysis** (fear, anger, joy, surprise, disgust)
+- **Emotional tone warnings** - flags high fear/anger content
+- **Neutral detection** - identifies factual reporting style
+
+### 📰 Clickbait Detector
+- **Headline vs body analysis**
+- **Clickbait phrase detection** ("You won't believe", etc.)
+- **Title sensationalism metrics**
+
+### 📖 Readability Analysis
+- **Flesch-Kincaid Grade Level**
+- **Reading complexity warnings**
+- **Average sentence/word length metrics**
+
+### 🔗 Source Credibility
+- **Wire service format detection** (Reuters, AP style)
+- **Credible source mentions** (BBC, NYT, etc.)
+- **Dateline pattern recognition**
 
 ---
 
-## 🛠️ Technologies & Tools Used
-- Python
-- Jupyter Notebook
-- Pandas, NumPy
-- Scikit-learn
-- TF-IDF Vectorizer
-- Logistic Regression
-- Pickle (Model Saving)
+## 🚀 Quick Start
+
+### Option 1: Ultimate AI Analyzer (Recommended)
+```bash
+# Install dependencies
+pip install streamlit transformers torch
+
+# Run the full-featured analyzer
+streamlit run app_ultimate.py
+```
+
+### Option 2: Simple Demo (No training required)
+```bash
+streamlit run app_v2_demo.py
+```
+
+### Option 3: Train Your Own Model
+```bash
+# Install dependencies
+pip install -r requirements_v2.txt
+
+# Train DistilBERT on your data (~20min GPU, ~2hrs CPU)
+python 03_train_distilbert.py
+
+# Run production app
+streamlit run app_v2.py
+```
+
+### Option 4: Train on Google Colab (Free GPU)
+1. Upload `train_on_colab.ipynb` to [Google Colab](https://colab.research.google.com/)
+2. Enable GPU: Runtime → Change runtime type → T4 GPU
+3. Upload your CSV files when prompted
+4. Download the trained model
 
 ---
 
 ## 📂 Project Structure
+
+```
 fake-news-detection-ml/
 │
-├── 01_load_and_inspect_data.ipynb
-├── 02_prediction_and_saving_model.ipynb
-├── Fake.csv
-├── True.csv
-├── fake_news_model.pkl
-├── tfidf_vectorizer.pkl
-└── README.md
+├── 🎯 MAIN APPS
+│   ├── app_ultimate.py          # Full AI Analyzer (all features) ⭐
+│   ├── app_v2.py                # Production DistilBERT app
+│   ├── app_v2_demo.py           # Quick demo (pre-trained model)
+│   └── app.py                   # Original v1 (TF-IDF)
+│
+├── 🧠 TRAINING
+│   ├── 03_train_distilbert.py   # DistilBERT training script
+│   ├── train_on_colab.ipynb     # Google Colab notebook
+│   ├── 01_load_and_inspect_data.ipynb  # Data exploration (v1)
+│   └── 02_prediction_and_saving_model.ipynb  # Model testing (v1)
+│
+├── 📊 DATA
+│   ├── Fake.csv                 # 23,481 fake news articles
+│   └── True.csv                 # 21,417 real news articles
+│
+├── 🤖 MODELS
+│   ├── fake_news_distilbert/    # Trained DistilBERT (after training)
+│   ├── fake_news_model.pkl      # Trained Logistic Regression (v1)
+│   └── tfidf_vectorizer.pkl     # TF-IDF vectorizer (v1)
+│
+└── 📋 CONFIG
+    ├── requirements.txt         # v1 dependencies
+    └── requirements_v2.txt      # v2 dependencies
+```
 
 ---
 
-## 📊 Dataset Description
-The dataset contains labeled news articles:
+## 🔄 Version Comparison
 
-- Fake.csv – Fake news articles
-- True.csv – Real news articles
-
-Columns:
-- title – News headline
-- text – Full news content
-- subject – Category
-- date – Publication date
-
-Total samples: 44,898 news articles
-
----
-
-## 🔄 Methodology
-1. Data Loading & Inspection
-   - Loaded Fake and Real news datasets
-   - Checked data shape and missing values
-
-2. Data Preprocessing
-   - Converted text to lowercase
-   - Removed punctuation, numbers, and extra spaces
-
-3. Feature Extraction
-   - Used TF-IDF Vectorizer to convert text into numerical features
-
-4. Model Training
-   - Trained Logistic Regression classifier
-   - Split data into 80% training and 20% testing
-
-5. Model Evaluation
-   - Evaluated using Accuracy, Precision, Recall, and F1-score
+| Feature | v1 (TF-IDF) | v2 (DistilBERT) | Ultimate |
+|---------|-------------|-----------------|----------|
+| **Classification** | ✅ | ✅ | ✅ |
+| **Confidence Score** | ❌ | ✅ | ✅ |
+| **Length Gating** | ❌ | ✅ | ✅ |
+| **Explainability** | ❌ | ❌ | ✅ |
+| **Emotion Analysis** | ❌ | ❌ | ✅ |
+| **Writing Style** | ❌ | ❌ | ✅ |
+| **Clickbait Detection** | ❌ | ❌ | ✅ |
+| **Readability Score** | ❌ | ❌ | ✅ |
+| **Source Credibility** | ❌ | ❌ | ✅ |
+| **Topic Classification** | ❌ | ❌ | ✅ |
 
 ---
 
-## ✅ Model Performance
-- Accuracy: ~99%
-- Balanced performance on both Fake and Real news classes
+## 🧪 How It Works
+
+### 1. Semantic Understanding (DistilBERT)
+Unlike TF-IDF which only counts words, DistilBERT understands context:
+- "Bank" in "river bank" ≠ "Bank" in "money bank"
+- Handles unseen words through subword tokenization
+- Pre-trained on modern web text (knows current entities)
+
+### 2. Multi-Layer Defense
+```
+Input Text
+    ↓
+[Length Check] → Too short? → Return "UNCERTAIN"
+    ↓
+[DistilBERT Classification] → Get probabilities
+    ↓
+[Confidence Check] → Low confidence? → Add warning
+    ↓
+[Style Analysis] → Check sensationalism
+    ↓
+[Emotion Analysis] → Flag fear/anger content
+    ↓
+Final Result + Explanation
+```
+
+### 3. Explainability
+Uses ablation-based importance:
+1. Get base prediction probability
+2. Remove each word, re-predict
+3. Measure probability change
+4. Color-code by impact
 
 ---
 
-## 🔮 Prediction Example
-sample_news = "The government announced a new education policy today."
-prediction = predict_news(sample_news)
+## 📊 Model Performance
 
-Output:
-REAL NEWS
-
----
-
-## 💾 Model Persistence
-The trained model and TF-IDF vectorizer are saved using Pickle.
-
-Saved files:
-- fake_news_model.pkl
-- tfidf_vectorizer.pkl
-
-This allows predictions without retraining the model.
+| Metric | v1 (TF-IDF) | v2 (DistilBERT) |
+|--------|-------------|-----------------|
+| **Accuracy** | ~99% | ~99%+ |
+| **F1 Score** | ~0.99 | ~0.99 |
+| **Inference Time** | ~1ms | ~50-100ms |
+| **Model Size** | 185 KB | 260 MB |
 
 ---
 
 ## ⚠️ Limitations
-- Dataset mainly contains political news from 2016–2017
-- Model may misclassify modern or unrelated news topics
-- Performance depends on similarity between training data and input news
+
+> **Be honest about these in interviews - it shows technical maturity.**
+
+1. **Not Fact-Checking**: Cannot verify if "India won 2024 Cricket World Cup" is true
+2. **Dataset Bias**: Trained on 2016-2017 political news
+3. **Style-Based**: Detects writing patterns, not content accuracy
+4. **Domain Specific**: May not work well on health/science/sports
+5. **Adversarial Weakness**: Sophisticated fake news mimicking real style may fool it
 
 ---
 
-## 🚀 Future Improvements
-- Build a Streamlit-based web interface
-- Train with a more diverse and recent dataset
-- Experiment with advanced models (Naive Bayes, SVM, LSTM)
-- Deploy as a web API
+## 🛠️ Technologies
+
+- **Python 3.9+**
+- **PyTorch** - Deep learning framework
+- **Transformers (Hugging Face)** - DistilBERT model
+- **Streamlit** - Web interface
+- **Scikit-learn** - ML utilities
+- **Pandas/NumPy** - Data processing
 
 ---
 
-## 📌 How to Run the Project
-1. Clone the repository:
-   git clone https://github.com/your-username/fake-news-detection-ml.git
+## 🎓 Learning Outcomes
 
-2. Open Jupyter Notebook:
-   jupyter notebook
+This project demonstrates:
+- ✅ **Transfer Learning** with pre-trained transformers
+- ✅ **Explainable AI (XAI)** techniques
+- ✅ **Multi-task NLP** (classification, emotion, topics)
+- ✅ **Production ML** with Streamlit deployment
+- ✅ **Text Analytics** (readability, style metrics)
 
-3. Run notebooks in order:
-   - 01_load_and_inspect_data.ipynb
-   - 02_prediction_and_saving_model.ipynb
+---
+
+## 📈 Future Improvements
+
+- [ ] Add more diverse training data (post-2020 news)
+- [ ] Implement cross-domain detection (health, science, sports)
+- [ ] Add multi-language support
+- [ ] Deploy as REST API
+- [ ] Add real-time news source verification
 
 ---
 
 ## 👤 Author
-Ashutosh Tiwari  
+
+**Ashutosh Tiwari**  
 AIML Internship Project
 
-⭐ If you like this project, feel free to star the repository!
+---
+
+## 📜 License
+
+MIT License - feel free to use and modify!
+
+---
+
+⭐ **If you find this project useful, please star the repository!**
