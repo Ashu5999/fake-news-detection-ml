@@ -1,0 +1,44 @@
+# Ignore large data files (too big for GitHub)
+*.csv
+!requirements*.txt
+
+# Ignore ZIP files
+*.zip
+
+# Ignore extracted COVID data folder
+covid_data/
+
+# Ignore trained models (too large for GitHub)
+fake_news_distilbert/
+*.pkl
+
+# Ignore Python cache
+__pycache__/
+*.pyc
+*.pyo
+.Python
+
+# Ignore Jupyter checkpoints
+.ipynb_checkpoints/
+
+# Ignore virtual environment
+.venv/
+venv/
+env/
+
+# Ignore IDE settings
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Ignore OS files
+.DS_Store
+Thumbs.db
+
+# Ignore Streamlit cache
+.streamlit/secrets.toml
+
+# Ignore logs
+logs/
+*.log
