@@ -1,17 +1,6 @@
 """
-Fake News Detection - ULTIMATE ANALYZER
-========================================
-Full-featured AI analysis with:
-- Fake/Real classification with confidence
-- Word-level explainability
-- Emotion analysis
-- Writing style metrics
-- Clickbait detection
-- Topic classification
-- Readability scoring
-- Source credibility patterns
-
-Run: streamlit run app_ultimate.py
+Fake News Detection Web App
+Author: Ashutosh Tiwari
 """
 
 import streamlit as st
