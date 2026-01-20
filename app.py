@@ -10,6 +10,11 @@ Author: Ashutosh Tiwari
 import streamlit as st
 import pickle
 import re
+import os
+
+# Load environment variables from .env file
+from dotenv import load_dotenv
+load_dotenv()
 
 # Import the news verification module
 from news_verification import verify_with_newsapi, get_hybrid_verdict
