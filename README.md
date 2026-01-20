@@ -2,14 +2,22 @@
 
 A machine learning project that detects fake news using **Natural Language Processing** and **Deep Learning**, enhanced with **Live News API Verification**.
 
+![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)
+![Streamlit](https://img.shields.io/badge/Streamlit-1.28+-red.svg)
+![License](https://img.shields.io/badge/License-MIT-green.svg)
+
 ## 🆕 Hybrid ML + API Verification
 
-This project now features a **two-layer verification system**:
+This project features a **two-layer verification system** that combines ML predictions with live news source verification:
 
-1. **🤖 Machine Learning Model**: Analyzes writing patterns to classify news as real or fake
-2. **🌐 NewsAPI Integration**: Cross-checks predictions against trusted news sources
+1. **🤖 Machine Learning Model**: Analyzes writing patterns using TF-IDF + Logistic Regression
+2. **🌐 NewsAPI Integration**: Cross-checks predictions against trusted news sources (Reuters, BBC, CNN, etc.)
 
-### How It Works
+### Why Hybrid?
+
+ML models can produce false positives. The API layer acts as a safety net by verifying if the story exists in credible publications.
+
+### Architecture
 
 ```
 ┌─────────────────┐     ┌──────────────────┐
@@ -36,31 +44,33 @@ This project now features a **two-layer verification system**:
 
 ## 🚀 Quick Start
 
-### 1. Install dependencies
+### 1. Clone and Install
 
 ```bash
+git clone https://github.com/Ashu5999/fake-news-detection-ml.git
+cd fake-news-detection-ml
 pip install -r requirements.txt
 ```
 
-### 2. Configure NewsAPI (Optional but Recommended)
+### 2. Configure NewsAPI (Recommended)
 
 Get a free API key from [NewsAPI.org](https://newsapi.org/register) (100 requests/day).
 
 ```bash
-# Create .env file
+# Create .env file from template
 cp .env.example .env
 
 # Edit .env and add your key
 NEWSAPI_KEY=your_api_key_here
 ```
 
-### 3. Run the application
+### 3. Run the Application
 
 ```bash
 # Hybrid ML + API app (recommended)
 streamlit run app.py
 
-# Advanced DistilBERT app
+# Advanced DistilBERT app (more features, no API)
 streamlit run streamlit_app.py
 ```
 
@@ -68,7 +78,7 @@ streamlit run streamlit_app.py
 
 ```
 fake-news-detection-ml/
-├── app.py                    # Hybrid ML + API verification app
+├── app.py                    # 🔥 Hybrid ML + API verification app
 ├── news_verification.py      # NewsAPI integration module
 ├── streamlit_app.py          # Advanced DistilBERT web app
 ├── train_model.py            # Model training script
@@ -77,30 +87,27 @@ fake-news-detection-ml/
 ├── tfidf_vectorizer.pkl      # TF-IDF vectorizer
 ├── requirements.txt          # Dependencies
 ├── .env.example              # Environment variable template
-├── Fake.csv                  # Fake news dataset
-├── True.csv                  # Real news dataset
+├── Fake.csv                  # Fake news dataset (~63MB)
+├── True.csv                  # Real news dataset (~54MB)
 └── README.md
 ```
 
 ## 🔬 Features
 
-### ML-Based Detection
-- **Fake/Real Classification** with confidence scores
-- **TF-IDF + Logistic Regression** for reliable predictions
-- **DistilBERT** advanced model (in streamlit_app.py)
-
-### API Verification (NEW)
-- **NewsAPI Integration** for live verification
-- **Trusted Source Matching** (Reuters, BBC, CNN, etc.)
-- **Graceful Fallback** when API is unavailable
+### Hybrid App (`app.py`)
+- **ML Prediction** with confidence scores
+- **Live API Verification** via NewsAPI
+- **Trusted Source Matching** (Reuters, BBC, Al Jazeera, etc.)
+- **Graceful Fallback** when API unavailable
 - **Related Article Links** for manual verification
 
-### Analysis Features
-- **Explainability** - see which words triggered the prediction
-- **Emotion Analysis** - detects fear, anger, surprise in text
-- **Writing Style Analysis** - measures sensationalism, caps usage
+### Advanced App (`streamlit_app.py`)
+- **DistilBERT** transformer-based classification
+- **Word Importance Visualization** - see which words triggered predictions
+- **Emotion Analysis** - detects fear, anger, surprise
+- **Writing Style Analysis** - measures sensationalism
 - **Clickbait Detection** - analyzes headline patterns
-- **Readability Scoring** - calculates text complexity
+- **Readability Scoring** - text complexity metrics
 
 ## 📊 Dataset
 
@@ -110,12 +117,13 @@ The model is trained on:
 
 ## 🛠️ Technologies
 
-- Python 3.9+
-- Streamlit
-- Scikit-learn (TF-IDF + Logistic Regression)
-- PyTorch & Transformers (DistilBERT)
-- NewsAPI (external verification)
-- Pandas, NumPy
+| Category | Technologies |
+|----------|-------------|
+| **ML/NLP** | Scikit-learn, PyTorch, Transformers, DistilBERT |
+| **Web** | Streamlit |
+| **API** | NewsAPI, Requests |
+| **Data** | Pandas, NumPy |
+| **Config** | python-dotenv |
 
 ## 📈 Model Performance
 
@@ -138,9 +146,12 @@ The model is trained on:
 
 ### Rate Limits
 
-- **Free tier**: 100 requests/day
-- **Developer tier**: 500 requests/day
-- The app works without API (ML-only mode)
+| Tier | Limit |
+|------|-------|
+| Free | 100 requests/day |
+| Developer | 500 requests/day |
+
+> **Note:** The app works without an API key (ML-only mode)
 
 ## ⚠️ Limitations
 
@@ -150,10 +161,23 @@ The model is trained on:
 - NewsAPI free tier has daily request limits
 - API verification depends on news coverage
 
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/amazing-feature`
+3. Commit changes: `git commit -m 'Add amazing feature'`
+4. Push to branch: `git push origin feature/amazing-feature`
+5. Open a Pull Request
+
 ## 👤 Author
 
 **Ashutosh Tiwari**  
 AIML Internship Project
 
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
 ---
-⭐ Star this repo if you find it helpful!
+
+⭐ **Star this repo if you find it helpful!**
