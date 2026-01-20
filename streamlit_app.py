@@ -434,30 +434,36 @@ def main():
     # Input section
     st.divider()
     
+    # Initialize session state for inputs
+    if 'title_input' not in st.session_state:
+        st.session_state['title_input'] = ""
+    if 'text_input' not in st.session_state:
+        st.session_state['text_input'] = ""
+    
     col1, col2 = st.columns([3, 1])
     
     with col1:
-        title_input = st.text_input("📰 Headline (optional):", placeholder="Enter news headline...")
-        text_input = st.text_area("📝 Article Text:", height=200, 
-                                  placeholder="Paste the full news article here...")
+        title_input = st.text_input("📰 Headline (optional):", 
+                                    value=st.session_state['title_input'],
+                                    placeholder="Enter news headline...",
+                                    key="title_field")
+        text_input = st.text_area("📝 Article Text:", 
+                                  value=st.session_state['text_input'],
+                                  height=200, 
+                                  placeholder="Paste the full news article here...",
+                                  key="text_field")
     
     with col2:
         st.markdown("**Quick Samples:**")
         if st.button("📋 Real Sample"):
-            st.session_state['sample_title'] = "U.S. Senate Passes Bipartisan Bill"
-            st.session_state['sample_text'] = """WASHINGTON (Reuters) - The U.S. Senate passed bipartisan legislation on Tuesday aimed at strengthening cybersecurity measures across federal agencies. The bill, which passed with a 95-3 vote, requires agencies to report cyber incidents within 72 hours and establishes new standards for protecting critical infrastructure. Senator John Smith praised the measure as a significant step forward in national security. The legislation now moves to the House of Representatives for consideration."""
+            st.session_state['title_input'] = "U.S. Senate Passes Bipartisan Bill"
+            st.session_state['text_input'] = """WASHINGTON (Reuters) - The U.S. Senate passed bipartisan legislation on Tuesday aimed at strengthening cybersecurity measures across federal agencies. The bill, which passed with a 95-3 vote, requires agencies to report cyber incidents within 72 hours and establishes new standards for protecting critical infrastructure. Senator John Smith praised the measure as a significant step forward in national security. The legislation now moves to the House of Representatives for consideration."""
+            st.rerun()
         
         if st.button("📋 Fake Sample"):
-            st.session_state['sample_title'] = "BREAKING: Scientists EXPOSED for LYING!"
-            st.session_state['sample_text'] = """You won't BELIEVE what they've been hiding from you! The mainstream media doesn't want you to know the TRUTH about what's really happening. Scientists have been EXPOSED for covering up the biggest scandal in history! Share this before they DELETE it! They're coming for your rights and nobody is talking about it. Wake up people! This changes EVERYTHING we thought we knew. The government is in on it too!"""
-    
-    # Apply samples
-    if 'sample_title' in st.session_state:
-        title_input = st.session_state['sample_title']
-        text_input = st.session_state['sample_text']
-        del st.session_state['sample_title']
-        del st.session_state['sample_text']
-        st.rerun()
+            st.session_state['title_input'] = "BREAKING: Scientists EXPOSED for LYING!"
+            st.session_state['text_input'] = """You won't BELIEVE what they've been hiding from you! The mainstream media doesn't want you to know the TRUTH about what's really happening. Scientists have been EXPOSED for covering up the biggest scandal in history! Share this before they DELETE it! They're coming for your rights and nobody is talking about it. Wake up people! This changes EVERYTHING we thought we knew. The government is in on it too!"""
+            st.rerun()
     
     # Analysis
     if st.button("🔍 Analyze", type="primary", use_container_width=True):
