@@ -10,7 +10,8 @@ covid_data/
 
 # Ignore trained models (too large for GitHub)
 fake_news_distilbert/
-*.pkl
+# Allow small TF-IDF model files for Streamlit Cloud deployment
+# *.pkl
 
 # Ignore Python cache
 __pycache__/

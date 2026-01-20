@@ -14,15 +14,7 @@ from transformers import (
     pipeline
 )
 
-# =============================================================================
-# Page Config
-# =============================================================================
-
-st.set_page_config(
-    page_title="AI Fake News Analyzer",
-    page_icon="🔬",
-    layout="wide"
-)
+# Note: st.set_page_config is in main streamlit_app.py only
 
 # =============================================================================
 # Constants

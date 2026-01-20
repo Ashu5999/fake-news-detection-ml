@@ -18,15 +18,7 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from news_verification import verify_with_newsapi, get_hybrid_verdict
 
-# =============================================================================
-# Page Config
-# =============================================================================
-
-st.set_page_config(
-    page_title="Hybrid Verification",
-    page_icon="🔗",
-    layout="wide"
-)
+# Note: st.set_page_config is in main streamlit_app.py only
 
 # =============================================================================
 # Load ML Model
