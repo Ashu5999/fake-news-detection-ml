@@ -20,6 +20,7 @@ AI-powered news analysis with **multiple detection methods** - combining Machine
 ### 1. AI Analyzer (DistilBERT)
 Deep learning-powered analysis with explainability:
 - Fake/Real classification with confidence scores
+- Fake/Real classification with confidence scores.
 - Word importance visualization
 - Emotion analysis
 - Writing style analysis
