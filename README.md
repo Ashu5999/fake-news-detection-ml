@@ -63,7 +63,7 @@ Combines ML predictions with live news source verification:
 
 ---
 
-## 🚀 Quick Start
+## 🚀 Quick Start.
 
 ### 1. Clone and Install
 
