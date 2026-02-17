@@ -145,7 +145,7 @@ fake-news-detection-ml/
 
 ## 👤 Author
 
-**Ashutosh Tiwari**  
+**Ashutosh Tiwari**  .
 AIML Internship Project
 
 ## 📄 License
